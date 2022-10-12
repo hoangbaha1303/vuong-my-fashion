@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{client/clientLayout.html}">
+
+<head>
+</head>
+
+<body>
+	<div class="app-content" layout:fragment="content">
+
+		<!--====== Section 1 ======-->
+		<div class="u-s-p-y-60">
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="breadcrumb">
+						<div class="breadcrumb__wrap">
+							<ul class="breadcrumb__list">
+								<li class="has-separator"><a th:href="@{/}">Trang Chủ</a></li>
+								<li class="is-marked"><a th:href="@{/carts}">Giỏ Hàng</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--====== End - Section 1 ======-->
+
+
+		<!--====== Section 2 ======-->
+		<div class="u-s-p-b-60">
+
+			<!--====== Section Intro ======-->
+			<div class="section__intro u-s-m-b-60">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="section__text-wrap">
+								<h1 class="section__heading u-c-secondary">GIỎ HÀNG</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Intro ======-->
+
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 u-s-m-b-30">
+							<div class="table-responsive">
+								<table class="table-p">
+									<tbody>
+										<form th:action="@{/carts/update}" method="post"
+											th:each="item : ${session.cartItems}">
+											<!--====== Row ======-->
+											<tr>
+												<td>
+													<div class="table-p__box">
+														<div class="table-p__img-wrap">
+
+															<img class="u-img-fluid"
+																th:src="@{'/images/' + ${item.image}}" alt="">
+														</div>
+														<div class="table-p__info">
+
+															<span class="table-p__name"> <a
+																th:href="@{'/products/detail/'+${item.productID}}"
+																th:text="${item.name}"></a>
+															</span>
+															<ul class="table-p__variant-list">
+																<li><span>Size: 22</span></li>
+																<li><span>Color: Red</span></li>
+															</ul>
+														</div>
+													</div>
+												</td>
+												<td th:if="${item.promotionPrice != null}"><span
+													class="table-p__price"
+													th:text="${#numbers.formatDecimal(item.promotionPrice,3,'POINT',0,'COMMA')+ ' VNĐ'}"></span>
+													<del class="pd-detail__del"
+														th:text="${#numbers.formatDecimal(item.price,3,'POINT',0,'COMMA')+ ' VNĐ'}"></del>
+												</td>
+												<td th:if="${item.promotionPrice == null}"><span
+													class="table-p__price"
+													th:text="${#numbers.formatDecimal(item.price,3,'POINT',0,'COMMA')+ ' VNĐ'}"></span>
+												</td>
+												<td>
+													<div class="table-p__input-counter-wrap">
+
+														<!--====== Input Counter ======-->
+														<div class="input-counter">
+															<input type="hidden" th:name="productID"
+																th:value="${item.productID}" /> <input
+																class="input-counter__text input-counter--text-primary-style"
+																type="number" th:value="${item.quantity}"
+																th:name="quantity" onblur="this.form.submit()"
+																data-min="1" data-max="1000">
+														</div>
+														<!--====== End - Input Counter ======-->
+													</div>
+												</td>
+												<td>
+													<div class="table-p__del-wrap">
+
+														<a class="far fa-trash-alt table-p__delete-link"
+															th:href="@{'/carts/remove/'+ ${item.productID}}"></a>
+													</div>
+												</td>
+											</tr>
+											<!--====== End - Row ======-->
+										</form>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="route-box">
+								<div class="route-box__g1">
+
+									<a class="route-box__link" th:href="@{/}"><i
+										class="fas fa-long-arrow-alt-left"></i> <span>TIẾP TỤC
+											MUA SẮM</span></a>
+								</div>
+								<div class="route-box__g2">
+
+									<a class="route-box__link" onclick="showConfirmModalDialog()"><i
+										class="fas fa-trash"></i> <span>XÓA TOÀN BỘ GIỎ HÀNG</span></a>
+								</div>
+							</div>
+						</div>
+						<script>
+							function showConfirmModalDialog() {
+								$('#yesOption').attr('href', '/carts/clear/');
+								$('#confirmationId').modal('show');
+							}
+						</script>
+
+						<!-- Modal -->
+						<div class="modal fade" id="confirmationId" tabindex="-1"
+							role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">Xác nhận</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">Bạn thực sự có muốn xóa tất cả
+										giỏ hàng</div>
+									<div class="modal-footer">
+										<a id="yesOption" type="button" class="btn btn-primary">Có</a>
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">Không</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Content ======-->
+		</div>
+		<!--====== End - Section 2 ======-->
+
+
+		<!--====== Section 3 ======-->
+		<div class="u-s-p-b-60">
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 u-s-m-b-30">
+							<form class="f-cart" th:action="@{/carts/checkout}" method="get">
+								<div class="row">
+									<div class="col-lg-4 col-md-6 u-s-m-b-30">
+										<div class="f-cart__pad-box">
+											<h1 class="gl-h1">DỰ TÍNH PHÍ VẬN CHUYỂN</h1>
+
+											<span class="gl-text u-s-m-b-30">Chọn điểm giao hàng
+												của bạn để nhận được ước tính phí vận chuyển.</span>
+											<div class="u-s-m-b-30">
+
+												<!--====== Select Box ======-->
+
+												<label class="gl-label" for="shipping-country">TỈNH
+													THÀNH *</label> <select
+													class="select-box select-box--primary-style" th:name="province"
+													id="province">
+													<option value="-1">Chọn tỉnh thành</option>
+												</select>
+												<!--====== End - Select Box ======-->
+											</div>
+											<div class="u-s-m-b-30">
+
+												<!--====== Select Box ======-->
+
+												<label class="gl-label" for="shipping-state">QUẬN/HUYỆN
+													*</label> <select class="select-box select-box--primary-style"
+													th:name="district" id="district">
+													<option value="-1">Chọn quận/huyện</option>
+												</select>
+												<!--====== End - Select Box ======-->
+											</div>
+											
+											<div class="u-s-m-b-30">
+
+												<label class="gl-label" for="shipping-state">PHƯỜNG/XÃ
+													*</label> <select class="select-box select-box--primary-style"
+													name="town" id="town">
+													<option value="-1">Chọn phường/xã</option>
+												</select>
+											</div>
+											<div class="u-s-m-b-30">
+
+												<label class="gl-label" for="shipping-zip">ĐỊA CHỈ CHI TIẾT *</label> <input class="input-text input-text--primary-style"
+													name="address" type="text" id="shipping-zip" placeholder="Đường, Số Nhà">
+											</div>
+											<div class="u-s-m-b-30">
+
+												<a class="f-cart__ship-link btn--e-transparent-brand-b-2"
+													th:href="@{/carts/shipping}">Tính phí vận chuyển</a>
+											</div>
+
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-6 u-s-m-b-30">
+										<div class="f-cart__pad-box">
+											<h1 class="gl-h1">GHI CHÚ</h1>
+
+											<span class="gl-text u-s-m-b-30">Thêm ghi chú đặc biệt
+												về sản phẩm của bạn</span>
+											<div>
+
+												<label for="f-cart-note"></label>
+												<textarea class="text-area text-area--primary-style"
+													id="f-cart-note"></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-6 u-s-m-b-30">
+										<div class="f-cart__pad-box">
+											<div class="u-s-m-b-30">
+												<table class="f-cart__table">
+													<tbody>
+														<tr>
+															<td>PHÍ VẬN CHUYỂN</td>
+															<td>$</td>
+														</tr>
+
+														<tr>
+															<td>TỔNG TIỀN</td>
+															<td
+																th:text="${#numbers.formatDecimal(session.total,3,'POINT',0,'COMMA')+ ' VNĐ'}">$379.00</td>
+														</tr>
+														<tr>
+															<td>TỔNG THANH TOÁN</td>
+															<td th:text="${#numbers.formatDecimal(session.total,3,'POINT',0,'COMMA')+ ' VNĐ'}">$</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div>
+
+												<button class="btn btn--e-brand-b-2" type="submit">
+													TIẾN HÀNH THANH TOÁN</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Content ======-->
+		</div>
+		<!--====== End - Section 3 ======-->
+	</div>
+
+</body>
+</html>

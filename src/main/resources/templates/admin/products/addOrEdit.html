@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/dashboardLayout.html}">
+
+<head></head>
+
+<body>
+	<div class="col-12 grid-margin stretch-card" layout:fragment="content">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title" th:text="${product.isEdit?'CẬP NHẬP SẢN PHẨM':'THÊM MỚI SẢN PHẨM'}"></h4>
+				<form class="forms-sample" action="/admin/products/saveOrUpdate"
+					method="post" enctype="multipart/form-data" th:object="${product}">
+					<input type="hidden" th:field="*{isEdit}" />
+					<div class="form-group" th:if="${product.isEdit}">
+						<label for="productID">Mã Sản Phẩm</label> <input type="text"
+							th:field="*{productID}" name="productID" id="productID"
+							class="form-control" placeholder="Nhập mã sản phẩm"
+							aria-describedby="hProductID" readonly> <small id="hProductID"
+							class="text-muted">Mã sản phẩm không được để trống</small>
+					</div>
+					<div class="form-group">
+						<label for="name">Tên Sản Phẩm</label> <input type="text"
+							th:field="*{name}" name="name" id="name" class="form-control"
+							placeholder="Nhập tên sản phẩm" aria-describedby="hName">
+						<small th:if="${#fields.hasErrors('name')}" id="hName" class="text-muted">Tên sản phẩm không
+							được để trống</small>
+					</div>
+					<div class="row">
+						<div class="col-7">
+							<div class="form-group">
+								<label for="cateID">Loại Sản Phẩm</label> <select
+									class="form-control" th:field="*{cateID}" name="cateID"
+									id="cateID">
+									<option th:each="item: ${categories}" th:value="${item.cateID}"
+										th:text="${item.name}"
+										th:selected="${item.cateID == product.cateID}"></option>
+
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="brandID">Thương hiệu</label> <select
+									class="form-control" th:field="*{brandID}" name="brandID"
+									id="brandID">
+									<option th:each=" item: ${brands}" th:value="${item.id}"
+										th:text="${item.name}"
+										th:selected="${item.id == product.brandID}"></option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="supplierID">Nhà phân phối</label> <select
+									class="form-control" th:field="*{supplierID}" name="supplierID"
+									id="supplierID">
+									<option th:each=" item: ${suppliers}" th:value="${item.id}"
+										th:text="${item.name}"
+										th:selected="${item.id == product.supplierID}"></option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="warranty">Thời gian bảo hành</label>
+								<div class="input-group">
+									<input type="text" name="warranty" th:field="*{warranty}"
+										id="warranty" class="form-control"
+										placeholder="Nhập thời gian bảo hành"
+										aria-describedby="hWarranty">
+									<div class="input-group-append">
+										<span class="input-group-text">Tháng</span>
+									</div>
+								</div>
+								<small th:if="${#fields.hasErrors('warranty')}" id="hWarranty" class="text-muted">Thời gian bảo
+									hành không được để trống</small>
+							</div>
+							<div class="form-group">
+								<label for="quantity">Số lượng</label> <input type="text"
+									th:field="*{quantity}" name="quantity" id="quantity"
+									class="form-control" placeholder="Nhập số lượng sản phẩm"
+									aria-describedby="hQuantity"> <small th:if="${#fields.hasErrors('quantity')}" id="hQuantity"
+									class="text-muted">Số lượng không được để trống</small>
+							</div>
+						</div>
+						<div class="col-5">
+							<script>
+								function chooseFile(fileInput){
+									if(fileInput.files && fileInput.files[0]){
+										var reader = new FileReader();
+
+										reader.onload = function(e){
+											$('#image').attr('src', e.target.result);
+										}
+
+										reader.readAsDataURL(fileInput.files[0]);
+									}
+								}
+							</script>
+							<img id="image" th:if="${product.image == null}" th:src="@{admins/assets/images/products/noimage.jpg}" alt=""
+								width="51%" class="img-responsive mx-auto d-block">
+							<img id="image" th:if="${product.image != null}" th:src="${'/admin/products/images/' + product.image}" alt=""
+								width="51%" class="img-responsive mx-auto d-block">
+							 <div class="form-group mt-2">
+							   <label for="imageFile" class="form-label">Hình ảnh sản phẩm</label>
+							   <input type="file" onchange="chooseFile(this)" class="form-control" name="imageFile" id="imageFile" placeholder="Nhấn để tải ảnh lên" aria-describedby="fileHelpId">
+							   
+							 </div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="price">Giá bán</label>
+						<div class="input-group">
+							<input type="text" name="price" th:field="*{price}" id="price"
+								class="form-control" placeholder="Nhập giá bán"
+								aria-describedby="hPrice">
+							<div class="input-group-append">
+								<span class="input-group-text">VND</span>
+							</div>
+						</div>
+						<small th:if="${#fields.hasErrors('price')}" id="hPrice" class="text-muted">Giá bán không được
+							để trống</small>
+					</div>
+					<div class="form-group">
+						<label for="promotionPrice">Giá Khuyến Mãi</label>
+						<div class="input-group">
+							<input type="text" name="promotionPrice"
+								th:field="*{promotionPrice}" id="promotionPrice"
+								class="form-control" placeholder="Nhập giá khuyến mãi"
+								aria-describedby="hPP">
+							<div class="input-group-append">
+								<span class="input-group-text">VND</span>
+							</div>
+						</div>
+						<small th:if="${#fields.hasErrors('promotionPrice')}" id="hPP" class="text-muted">Để trống nếu không muốn
+							giảm giá</small>
+					</div>
+					<div class="form-group">
+						<label for="description">Mô tả</label>
+						<textarea class="form-control" th:field="*{description}"
+							name="description" id="description" rows="3"></textarea>
+							<small th:if="${#fields.hasErrors('description')}" id="hDes" class="text-muted">Mô tả không được để trống</small>
+					</div>
+					<div class="form-group">
+						<label for="detail">Chi tiết sản phẩm</label>
+						<textarea class="form-control" th:field="*{detail}" name="detail"
+							id="detail" rows="4"></textarea>
+							<small th:if="${#fields.hasErrors('detail')}" id="hDetail" class="text-muted">Chi tiết sản phẩm không được để trống</small>
+					</div>
+					
+					<button type="submit" class="btn btn-outline-primary btn-icon-text" th:text="${product.isEdit?'Cập nhập':'Thêm mới'}">
+						<i class="mdi mdi-file-check btn-icon-prepend"></i> Lưu
+					</button>
+					<button type="button" class="btn btn-outline-warning btn-icon-text">
+						<i class="mdi mdi-reload btn-icon-prepend"></i> Làm mới
+					</button>
+					<a class="btn btn-outline-info btn-icon-text"
+						th:href="@{/admin/products}"><i
+						class="mdi mdi-printer btn-icon-append"></i> Danh sách loại sản
+						phẩm </a>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

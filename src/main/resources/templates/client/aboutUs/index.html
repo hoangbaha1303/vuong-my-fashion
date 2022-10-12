@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{client/clientLayout.html}">
+
+<head>
+</head>
+
+<body>
+	<div class="app-content" layout:fragment="content">
+
+		<!--====== Section 1 ======-->
+		<div class="u-s-p-y-60">
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="breadcrumb">
+						<div class="breadcrumb__wrap">
+							<ul class="breadcrumb__list">
+								<li class="has-separator"><a th:href="@{/}">Trang Chủ</a></li>
+								<li class="is-marked"><a th:href="@{/aboutUs}">Về Chúng Tôi</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--====== End - Section 1 ======-->
+
+
+		<!--====== Section 2 ======-->
+		<div class="u-s-p-b-60">
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="about">
+								<div class="about__container">
+									<div class="about__info">
+										<h2 class="about__h2" th:text="${about.description}"></h2>
+										<div class="about__p-wrap">
+											<p class="about__p" th:text=${about.detail}> Ngày mới mang đến cho bạn cơ hội mới giúp bạn tạo ra dấu ấn khó quên trong cuộc đời của mình. Còn chần chờ gì nữa mà không bắt đầu ngay bây giờ.</p>
+										</div>
+
+										<a class="about__link btn--e-secondary" th:href="@{/}"
+											target="_blank">Mua ngay</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Content ======-->
+		</div>
+		<!--====== End - Section 2 ======-->
+
+
+		<!--====== Section 3 ======-->
+		<div class="u-s-p-b-60">
+
+			<!--====== Section Intro ======-->
+			<div class="section__intro u-s-m-b-46">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="section__text-wrap">
+								<h1 class="section__heading u-c-secondary">Thành Viên Trong Nhóm </h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Intro ======-->
+
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-3 col-md-4 col-sm-6 u-s-m-b-30">
+							<div class="team-member u-h-100">
+								<div class="team-member__wrap">
+									<div class="aspect aspect--bg-grey-fb aspect--square">
+
+										<img class="aspect__img team-member__img"
+											th:src="@{/clients/images/about/member-1.jpg}" alt="">
+									</div>
+									<div class="team-member__social-wrap">
+										<ul class="team-member__social-list">
+											<li><a class="s-tw--bgcolor-hover" href="#"><i
+													class="fab fa-twitter"></i></a></li>
+											<li><a class="s-fb--bgcolor-hover" href="#"><i
+													class="fab fa-facebook-f"></i></a></li>
+											<li><a class="s-insta--bgcolor-hover" href="#"><i
+													class="fab fa-instagram"></i></a></li>
+											<li><a class="s-linked--bgcolor-hover" href="#"><i
+													class="fab fa-linkedin"></i></a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="team-member__info">
+
+									<span class="team-member__name">Hoàng Bá Hà</span> <span
+										class="team-member__job-title">Kiêm từ a tới á</span>
+								</div>
+							</div>
+						</div>
+							
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Content ======-->
+		</div>
+		<!--====== End - Section 3 ======-->
+
+
+		<!--====== Section 4 ======-->
+		<div class="u-s-p-b-90 u-s-m-b-30">
+
+			<!--====== Section Intro ======-->
+			<div class="section__intro u-s-m-b-46">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="section__text-wrap">
+								<h1 class="section__heading u-c-secondary u-s-m-b-12">PHẢN HỒI TỪ KHÁCH HÀNG</h1>
+
+								<span class="section__span u-c-silver">KHÁCH HÀNG CỦA CHÚNG TÔI NGHĨ GÌ</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Intro ======-->
+
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+
+					<!--====== Testimonial Slider ======-->
+					<div>
+						<div class="owl-carousel owl-loaded owl-drag"
+							id="testimonial-slider">
+							<div class="owl-stage-outer">
+								<div class="owl-stage"
+									style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1804px;">
+									<div class="owl-item" style="width: 451px;" th:each="item: ${feedbacks}" th:if="${item.status == true}">
+										<div class="testimonial">
+											<div class="testimonial__img-wrap">
+
+												<img class="testimonial__img" th:src="@{clients/images/about/test-1.png}"
+													alt="">
+											</div>
+											<div class="testimonial__content-wrap">
+
+												<span class="testimonial__double-quote"><i
+													class="fas fa-quote-right"></i></span>
+												<blockquote class="testimonial__block-quote">
+													<p th:text="${item.content}"></p>
+												</blockquote>
+
+												<span class="testimonial__author" th:text="${item.username}">John D. / DVNTR
+													Inc.</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="owl-nav disabled">
+								<button type="button" role="presentation" class="owl-prev">
+									<span aria-label="Previous">‹</span>
+								</button>
+								<button type="button" role="presentation" class="owl-next">
+									<span aria-label="Next">›</span>
+								</button>
+							</div>
+							
+						</div>
+					</div>
+					<!--====== End - Testimonial Slider ======-->
+				</div>
+			</div>
+			<!--====== End - Section Content ======-->
+		</div>
+		<!--====== End - Section 4 ======-->
+	</div>
+</body>
+</html>

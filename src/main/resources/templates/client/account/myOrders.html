@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{client/account/clientAccountLayout.html}">
+
+<head>
+</head>
+
+<body>
+	<div class="col-lg-9 col-md-12" layout:fragment="content">
+		<div
+			class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
+			<div class="dash__pad-2">
+				<h1 class="dash__h1 u-s-m-b-14">ĐƠN HÀNG CỦA TÔI</h1>
+
+				<span class="dash__text u-s-m-b-30">Ở đây bạn có thể xem tất cả sản phẩm đã đặt</span>
+				<form class="m-order u-s-m-b-30" action="">
+					<div class="m-order__select-wrapper">
+
+						<label class="u-s-m-r-8" for="my-order-sort">Hiển thị:</label><select
+							class="select-box select-box--primary-style" onchange="this.form.submit()" name="date" id="my-order-sort">
+							<option th:selected="${date== -5}" value="-5">5 ngày trước</option>
+							<option th:selected="${date== -15}" value="-15">15 ngày trước</option>
+							<option th:selected="${date== -30}" value="-30">1 tháng trước</option>
+							<option th:selected="${date== -180}" value="-180">6 tháng trước</option>
+							<option th:selected="${date== -365}" value="-365">1 năm trước</option>
+							<option>All Orders</option>
+						</select>
+					</div>
+				</form>
+				<div class="m-order__list">
+					<div class="m-order__get" th:each="item: ${list}">
+						<div class="manage-o__header u-s-m-b-30">
+							<div class="dash-l-r">
+								<div>
+									<div class="manage-o__text-2 u-c-secondary" th:text="'Đơn Hàng: #'+${item.orderID}">Order
+										#305423126</div>
+									<div class="manage-o__text u-c-silver" th:text="'Ngày Giao: '+${#dates.format(item.orderDate, 'dd-MM-yyyy hh-mm')}">Placed on 26 Oct
+										2016 09:08:37</div>
+								</div>
+								<div>
+									<div class="dash__link dash__link--brand">
+
+										<a href="dash-manage-order.html">MANAGE</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="manage-o__description">
+							<div class="description__container">
+								<div class="description__img-wrap">
+
+									<img class="u-img-fluid" src="images/product/men/product8.jpg"
+										alt="">
+								</div>
+								<div class="description-title">New Fashion D Nice Elegant</div>
+							</div>
+							<div class="description__info-wrap">
+								<div>
+
+									<span class="manage-o__badge badge--delivered">Delivered</span>
+								</div>
+								<div>
+
+									<span class="manage-o__text-2 u-c-silver">Quantity: <span
+										class="manage-o__text-2 u-c-secondary">1</span></span>
+								</div>
+								<div>
+
+									<span class="manage-o__text-2 u-c-silver">Total: <span
+										class="manage-o__text-2 u-c-secondary">$16.00</span></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

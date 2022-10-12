@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/dashboardLayout.html}">
+
+<head></head>
+
+<body>
+	<div class="col-lg-12 grid-margin stretch-card"
+		layout:fragment="content">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">CẬP NHẬP TRẠNG THÁI PHẢN HỒI</h4>
+				
+				<div class="table-responsive">
+					<p class="card-description" th:text="'Mã Phản Hồi: '+${feedback.id}"></p>
+					<p class="card-description" th:text="'Tiêu Đề: '+${feedback.subject}"></p>
+					<p class="card-description" th:text="'Nội Dung: '+${feedback.content}"></p>
+					<p class="card-description" th:text="'Ngày Tạo: '+${#dates.format(feedback.createDate, 'dd-MM-yyyy HH:mm')}"></p>
+				</div>
+				<br></br>
+				<form th:action="@{/admin/feedbacks/update}" method="post" class="row">
+					<div class="col-6 row">
+						<label class="col-sm-3 col-form-label">Trạng Thái Phản Hồi</label>
+						<div class="col-sm-9">
+							<input type="hidden" name="id" th:value="${feedback.id}" />
+							<select class="form-control" name="status">
+								<option th:selected="${feedback.status}" value="true">Hiển Thị</option>
+								<option th:selected="${!feedback.status}" value="false">Ẩn</option>
+							</select>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary"> Lưu </button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

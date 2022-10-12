@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{client/clientLayout.html}">
+
+<head>
+</head>
+
+<body>
+	<div class="app-content" layout:fragment="content">
+
+		<!--====== Primary Slider ======-->
+		<div class="s-skeleton s-skeleton--h-600 s-skeleton--bg-grey">
+			<div class="owl-carousel primary-style-1" id="hero-slider">
+				<div class="hero-slide hero-slide--1">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="slider-content slider-content--animation">
+
+									<span class="content-span-1 u-c-secondary">Thời Trang Nữ</span> <span class="content-span-2 u-c-secondary">Đại Hạ Giá</span> <span class="content-span-3 u-c-secondary">
+									Tham khảo ngay những sản phẩm dưới đây của chúng tôi để nhận được ưu đãi tốt nhất </span> <span
+										class="content-span-4 u-c-secondary">Chỉ Từ<span
+										class="u-c-brand">9.000 VNĐ</span></span> <a
+										class="shop-now-link btn--e-brand"
+										th:href="@{'/products/search?name='+''}">MUA NGAY</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="hero-slide hero-slide--2">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="slider-content slider-content--animation">
+
+									<span class="content-span-1 u-c-white">Thời Trang Nam</span> <span
+										class="content-span-2 u-c-white">Giảm giá sốc</span>
+
+									<span class="content-span-3 u-c-white">Tham khảo ngay những sản phẩm dưới đây của chúng tôi để nhận được ưu đãi tốt nhất</span> <span class="content-span-4 u-c-white">
+										Chỉ Từ <span class="u-c-brand">9.000 VNĐ</span>
+									</span> <a class="shop-now-link btn--e-brand"
+										th:href="@{'/products/search?name='+''}">MUA NGAY</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="hero-slide hero-slide--3">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="slider-content slider-content--animation">
+
+									<span class="content-span-1 u-c-secondary">Thời Trang Trẻ Em</span> <span class="content-span-2 u-c-secondary">Bán Cho Vui Chứ Lời Lãi Gì Tầm Này</span> <span class="content-span-3 u-c-secondary">
+										Tham khảo ngay những sản phẩm dưới đây của chúng tôi để nhận được ưu đãi tốt nhất</span> <span
+										class="content-span-4 u-c-secondary">Chỉ Từ <span
+										class="u-c-brand">9.000 VNĐ</span></span> <a
+										class="shop-now-link btn--e-brand"
+										th:href="@{'/products/search?name='+''}">MUA NGAY</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--====== End - Primary Slider ======-->
+
+
+		<!--====== Section 1 ======-->
+		<div class="u-s-p-y-60">
+
+			<!--====== Section Intro ======-->
+			<div class="section__intro u-s-m-b-46">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="section__text-wrap">
+								<h1 class="section__heading u-c-secondary u-s-m-b-12">MUA SẮM NGAY NÀO CÁC BẠN ƠI</h1>
+
+								<span class="section__span u-c-silver">THAM KHẢO NGAY NHỮNG SẢN PHẨM SAU
+									DEALS</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Intro ======-->
+
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-5 col-md-5 u-s-m-b-30">
+
+							<a class="collection" href="shop-side-version-2.html">
+								<div class="aspect aspect--bg-grey aspect--square">
+
+									<img class="aspect__img collection__img"
+										th:src="@{/clients/images/collection/coll-1.jpg}" alt="">
+								</div>
+							</a>
+						</div>
+						<div class="col-lg-7 col-md-7 u-s-m-b-30">
+
+							<a class="collection" href="shop-side-version-2.html">
+								<div class="aspect aspect--bg-grey aspect--1286-890">
+
+									<img class="aspect__img collection__img"
+										th:src="@{/clients/images/collection/coll-2.jpg}" alt="">
+								</div>
+							</a>
+						</div>
+						<div class="col-lg-7 col-md-7 u-s-m-b-30">
+
+							<a class="collection" href="shop-side-version-2.html">
+								<div class="aspect aspect--bg-grey aspect--1286-890">
+
+									<img class="aspect__img collection__img"
+										th:src="@{/clients/images/collection/coll-3.jpg}" alt="">
+								</div>
+							</a>
+						</div>
+						<div class="col-lg-5 col-md-5 u-s-m-b-30">
+
+							<a class="collection" href="shop-side-version-2.html">
+								<div class="aspect aspect--bg-grey aspect--square">
+
+									<img class="aspect__img collection__img"
+										th:src="@{/clients/images/collection/coll-4.jpg}" alt="">
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--====== Section Content ======-->
+		</div>
+		<!--====== End - Section 1 ======-->
+
+
+		<!--====== Section 2 ======-->
+		<div class="u-s-p-b-60">
+
+			<!--====== Section Intro ======-->
+			<div class="section__intro u-s-m-b-16">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="section__text-wrap">
+								<h1 class="section__heading u-c-secondary u-s-m-b-12">SẢN
+									PHẨM XU HƯỚNG</h1>
+
+								<span class="section__span u-c-silver">CHỌN LOẠI SẢN PHẨM</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Intro ======-->
+
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="filter-category-container">
+								<div class="filter__category-wrapper">
+
+									<button class="btn filter__btn filter__btn--style-1 js-checked"
+										type="button" data-filter="*">TẤT CẢ</button>
+								</div>
+								<div class="filter__category-wrapper"
+									th:each="category:${categoriesLv1}">
+									<button class="btn filter__btn filter__btn--style-1"
+										type="button" th:data-filter="'.category'+${category.cateID}"
+										th:text="${category.name}">HEADPHONES</button>
+								</div>
+
+							</div>
+							<div class="filter__grid-wrapper u-s-m-t-30">
+								<div class="row">
+									<div th:each="item:${trending}"
+										th:class="'col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item category'+${item.cateID}">
+										<div class="product-o product-o--hover-on product-o--radius">
+											<div class="product-o__wrap">
+
+												<a class="aspect aspect--bg-grey aspect--square u-d-block"
+													th:href="@{'/products/detail/'+${item.productID}}"> <img
+													class="aspect__img" th:src="@{'/images/'+${item.image}}"
+													alt=""></a>
+												<div class="product-o__action-wrap">
+													<ul class="product-o__action-list">
+														<li><a data-modal="modal" data-modal-id="#quick-look"
+															data-tooltip="tooltip" data-placement="top"
+															title="Quick View"><i class="fas fa-search-plus"></i></a></li>
+														<li><a data-modal="modal"
+															data-modal-id="#add-to-cart" data-tooltip="tooltip"
+															data-placement="top" title="Add to Cart"><i
+																class="fas fa-plus-circle"></i></a></li>
+														<li><a href="signin.html" data-tooltip="tooltip"
+															data-placement="top" title="Add to Wishlist"><i
+																class="fas fa-heart"></i></a></li>
+														<li><a href="signin.html" data-tooltip="tooltip"
+															data-placement="top"
+															title="Email me When the price drops"><i
+																class="fas fa-envelope"></i></a></li>
+													</ul>
+												</div>
+											</div>
+
+											<span class="product-o__category"> <a
+												th:href="@{'/products/category/'+${item.cateID}}"
+												th:each="category:${categories}"
+												th:if="${category.cateID==item.cateID}"
+												th:text="${category.name}">Electronics</a></span> <span
+												class="product-o__name"> <a
+												th:href="@{'/products/detail/'+${item.productID}}"
+												th:text="${item.name}">Red Wireless Headphone</a></span>
+											<div class="product-o__rating gl-rating-style"
+												th:each="star: ${starTrending}"
+												th:if="${star.productID == item.productID}">
+												<i class="fas fa-star"
+													th:each="i:${#numbers.sequence(1 , star.avgStar , 1)}"></i><i
+													class="fas fa-star-half-alt"
+													th:each="i: ${ #numbers.sequence(1 , star.avgStar , 1)}"
+													th:if="${star.avgStar - i > 0 && star.avgStar - i < 1}"></i><i
+													class="far fa-star"
+													th:each="i:${#numbers.sequence(1 , 5-star.avgStar , 1)}"></i>
+
+												<span class="product-o__review"
+													th:text="'('+${star.countComment}+')'">(23)</span>
+											</div>
+
+											<span class="product-o__price"
+												th:if="${item.promotionPrice != null}"> <th:block
+													th:text="${#numbers.formatDecimal(item.promotionPrice,3,'POINT',0,'COMMA')+ ' VNĐ'}"></th:block>
+
+												<span class="product-o__discount"
+												th:text="${#numbers.formatDecimal(item.price,3,'POINT',0,'COMMA')+ ' VNĐ'}">$160.00</span></span>
+											<span class="product-o__price"
+												th:if="${item.promotionPrice == null}"> <th:block
+													th:text="${#numbers.formatDecimal(item.price,3,'POINT',0,'COMMA')+ ' VNĐ'}"></th:block>
+											</span>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="load-more">
+								<button class="btn btn--e-brand" type="button" th:formaction="@{'/products/search?name='+''}">Xem Thêm</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Content ======-->
+		</div>
+		<!--====== End - Section 2 ======-->
+
+
+		<!--====== Section 3 ======-->
+		<div class="u-s-p-b-60">
+
+			<!--====== Section Intro ======-->
+			<div class="section__intro u-s-m-b-46">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="section__text-wrap">
+								<h1 class="section__heading u-c-secondary u-s-m-b-12">SẢN
+									PHẨM SIÊU HOT</h1>
+
+								<span class="section__span u-c-silver">MUA NGAY SẢN PHẨM
+									TRONG HÔM NAY ĐỂ NHẬN ĐƯỢC ƯU ĐÃ TỐT NHẤT.</span> <span
+									class="section__span u-c-silver">HÃY THÊM SẢN PHẨM VÀO
+									GIỎ HÀNG.</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Intro ======-->
+
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6 col-md-6 u-s-m-b-30" th:each="item :${hot}">
+							<div
+								class="product-o product-o--radius product-o--hover-off u-h-100">
+								<div class="product-o__wrap">
+
+									<a class="aspect aspect--bg-grey aspect--square u-d-block"
+										th:href="@{'/products/detail/'+${item.productID}}"> <img
+										class="aspect__img" th:src="@{'/images/'+${item.image}}"
+										alt=""></a>
+									<div class="product-o__special-count-wrap">
+										<div class="countdown countdown--style-special"
+											th:data-countdown="${item.hot}"></div>
+									</div>
+									<div class="product-o__action-wrap">
+										<ul class="product-o__action-list">
+											<li><a data-modal="modal" data-modal-id="#quick-look"
+												data-tooltip="tooltip" data-placement="top"
+												title="Quick View"><i class="fas fa-search-plus"></i></a></li>
+											<li><a data-modal="modal" data-modal-id="#add-to-cart"
+												data-tooltip="tooltip" data-placement="top"
+												title="Add to Cart"><i class="fas fa-plus-circle"></i></a></li>
+											<li><a href="signin.html" data-tooltip="tooltip"
+												data-placement="top" title="Add to Wishlist"><i
+													class="fas fa-heart"></i></a></li>
+											<li><a href="signin.html" data-tooltip="tooltip"
+												data-placement="top" title="Email me When the price drops"><i
+													class="fas fa-envelope"></i></a></li>
+										</ul>
+									</div>
+								</div>
+
+								<span class="product-o__category"> <a
+									th:href="@{'/products/category/'+${item.cateID}}"
+									th:each="category:${categories}"
+									th:if="${category.cateID==item.cateID}"
+									th:text="${category.name}">Electronics</a></span> <span
+									class="product-o__name"> <a
+									th:href="@{'/products/detail/'+${item.productID}}"
+									th:text="${item.name}">DJI Phantom Drone 4k</a></span>
+								<div class="product-o__rating gl-rating-style"
+									th:each="star: ${starHot}"
+									th:if="${star.productID == item.productID}">
+									<i class="fas fa-star"
+										th:each="i:${#numbers.sequence(1 , star.avgStar , 1)}"></i><i
+										class="fas fa-star-half-alt"
+										th:each="i: ${ #numbers.sequence(1 , star.avgStar , 1)}"
+										th:if="${star.avgStar - i > 0 && star.avgStar - i < 1}"></i><i
+										class="far fa-star"
+										th:each="i:${#numbers.sequence(1 , 5-star.avgStar , 1)}"></i>
+
+									<span class="product-o__review"
+										th:text="'('+${star.countComment}+')'">(23)</span>
+								</div>
+
+								<span class="product-o__price"
+									th:if="${item.promotionPrice != null}"> <th:block
+										th:text="${#numbers.formatDecimal(item.promotionPrice,3,'POINT',0,'COMMA')+ ' VNĐ'}"></th:block>
+
+									<span class="product-o__discount"
+									th:text="${#numbers.formatDecimal(item.price,3,'POINT',0,'COMMA')+ ' VNĐ'}">$160.00</span></span>
+								<span class="product-o__price"
+									th:if="${item.promotionPrice == null}"> <th:block
+										th:text="${#numbers.formatDecimal(item.price,3,'POINT',0,'COMMA')+ ' VNĐ'}"></th:block>
+								</span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Content ======-->
+		</div>
+		<!--====== End - Section 3 ======-->
+
+
+		<!--====== Section 4 ======-->
+		<div class="u-s-p-b-60">
+
+			<!--====== Section Intro ======-->
+			<div class="section__intro u-s-m-b-46">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="section__text-wrap">
+								<h1 class="section__heading u-c-secondary u-s-m-b-12">SẢN
+									PHẨM MỚI</h1>
+
+								<span class="section__span u-c-silver">NHẬN HÀNG MỚI VỀ</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Intro ======-->
+
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="slider-fouc">
+						<div class="owl-carousel product-slider" data-item="4">
+							<div class="u-s-m-b-30" th:each="item: ${newArrivals}">
+								<div class="product-o product-o--hover-on">
+									<div class="product-o__wrap">
+
+										<a class="aspect aspect--bg-grey aspect--square u-d-block"
+											th:href="@{'/products/detail/'+${item.productID}}"> <img
+											class="aspect__img" th:src="@{'/images/'+${item.image}}"
+											alt=""></a>
+										<div class="product-o__action-wrap">
+											<ul class="product-o__action-list">
+												<li><a data-modal="modal" data-modal-id="#quick-look"
+													data-tooltip="tooltip" data-placement="top"
+													title="Xem Nhanh"><i class="fas fa-search-plus"></i></a></li>
+												<li><a data-modal="modal" data-modal-id="#add-to-cart"
+													data-tooltip="tooltip" data-placement="top"
+													title="Thêm Vào Giỏ Hàng"><i class="fas fa-plus-circle"></i></a>
+												</li>
+												<li><a th:href="@{'/wishList/add/'+ ${item.productID}}"
+													data-tooltip="tooltip" data-placement="top"
+													title="Yêu Thích"><i class="fas fa-heart"></i></a></li>
+												<li><a href="signin.html" data-tooltip="tooltip"
+													data-placement="top"
+													title="Gửi Mail cho tôi khi có giảm giá"><i
+														class="fas fa-envelope"></i></a></li>
+											</ul>
+										</div>
+									</div>
+
+									<span class="product-o__category"> <a
+										th:href="@{'/products/category/'+${item.cateID}}"
+										th:each="category: ${categories}"
+										th:if="${category.cateID == item.cateID}"
+										th:text="${category.name}">Electronics</a></span> <span
+										class="product-o__name"> <a
+										th:href="@{'/products/detail/'+${item.productID}}"
+										th:text="${item.name}">Nikon DSLR 4K Camera</a></span>
+									<div class="product-o__rating gl-rating-style"
+										th:each="star: ${starNewArrivals}"
+										th:if="${star.productID == item.productID}">
+										<i class="fas fa-star"
+											th:each="i:${#numbers.sequence(1 , star.avgStar , 1)}"></i><i
+											class="fas fa-star-half-alt"
+											th:each="i: ${ #numbers.sequence(1 , star.avgStar , 1)}"
+											th:if="${star.avgStar - i > 0 && star.avgStar - i < 1}"></i><i
+											class="far fa-star"
+											th:each="i:${#numbers.sequence(1 , 5-star.avgStar , 1)}"></i>
+
+										<span class="product-o__review"
+											th:text="'('+${star.countComment}+')'">(23)</span>
+									</div>
+
+									<span class="product-o__price"
+										th:if="${item.promotionPrice != null}"> <th:block
+											th:text="${#numbers.formatDecimal(item.promotionPrice,3,'POINT',0,'COMMA')+ ' VNĐ'}"></th:block>
+
+										<span class="product-o__discount"
+										th:text="${#numbers.formatDecimal(item.price,3,'POINT',0,'COMMA')+ ' VNĐ'}">$160.00</span></span>
+									<span class="product-o__price"
+										th:if="${item.promotionPrice == null}"> <th:block
+											th:text="${#numbers.formatDecimal(item.price,3,'POINT',0,'COMMA')+ ' VNĐ'}"></th:block>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Content ======-->
+		</div>
+		<!--====== End - Section 4 ======-->
+
+
+		<!--====== Section 5 ======-->
+		<div class="banner-bg">
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="banner-bg__countdown">
+								<div class="countdown countdown--style-banner"
+									data-countdown="2022/9/30"></div>
+							</div>
+							<div class="banner-bg__wrap">
+								<div class="banner-bg__text-1">
+
+									<span class="u-c-white">Ưu Đãi</span> <span
+										class="u-c-secondary">Toàn Quốc</span>
+								</div>
+								<div class="banner-bg__text-2">
+
+									<span class="u-c-secondary">Chính Thức Ra Mắt</span> <span
+										class="u-c-white">Đừng Bỏ Lỡ!</span>
+								</div>
+
+								<span
+									class="banner-bg__text-block banner-bg__text-3 u-c-secondary">Giao
+									Hàng Miễn Phí Khi Hóa Đơn Của Bạn Trên 2 Triệu</span> <a
+									class="banner-bg__shop-now btn--e-secondary" th:href="@{/}">Mua
+									Ngay</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Content ======-->
+		</div>
+		<!--====== End - Section 5 ======-->
+
+
+
+		<!--====== Section 10 ======-->
+		<div class="u-s-p-b-60">
+
+			<!--====== Section Intro ======-->
+			<div class="section__intro u-s-m-b-46">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="section__text-wrap">
+								<h1 class="section__heading u-c-secondary u-s-m-b-12">BÀI
+									VIẾT MỚI NHẤT</h1>
+
+								<span class="section__span u-c-silver">HÃY BẮT ĐẦU NGÀY
+									MỚI VỚI NHỮNG BẢN TIN TỨC MỚI NHẤT</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Intro ======-->
+
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-4 col-md-6 u-s-m-b-30">
+							<div class="bp-mini bp-mini--img u-h-100">
+								<div class="bp-mini__thumbnail">
+
+									<!--====== Image Code ======-->
+
+									<a class="aspect aspect--bg-grey aspect--1366-768 u-d-block"
+										href="blog-detail.html"> <img class="aspect__img"
+										th:src="@{/clients/images/blog/post-2.jpg}" alt=""></a>
+									<!--====== End - Image Code ======-->
+								</div>
+								<div class="bp-mini__content">
+									<div class="bp-mini__stat">
+
+										<span class="bp-mini__stat-wrap"> <span
+											class="bp-mini__publish-date"> <a> <span>25
+														February 2018</span></a></span></span> <span class="bp-mini__stat-wrap"> <span
+											class="bp-mini__preposition">By</span> <span
+											class="bp-mini__author"> <a href="#">Dayle</a></span></span> <span
+											class="bp-mini__stat"> <span class="bp-mini__comment">
+
+												<a href="blog-detail.html"><i
+													class="far fa-comments u-s-m-r-4"></i> <span>8</span></a>
+										</span></span>
+									</div>
+									<div class="bp-mini__category">
+
+										<a>Learning</a> <a>News</a> <a>Health</a>
+									</div>
+
+									<span class="bp-mini__h1"> <a href="blog-detail.html">Life
+											is an extraordinary Adventure</a></span>
+									<p class="bp-mini__p">Lorem Ipsum is simply dummy text of
+										the printing and typesetting industry.</p>
+									<div class="blog-t-w">
+
+										<a class="gl-tag btn--e-transparent-hover-brand-b-2">Travel</a>
+
+										<a class="gl-tag btn--e-transparent-hover-brand-b-2">Culture</a>
+
+										<a class="gl-tag btn--e-transparent-hover-brand-b-2">Place</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 u-s-m-b-30">
+							<div class="bp-mini bp-mini--img u-h-100">
+								<div class="bp-mini__thumbnail">
+
+									<!--====== Image Code ======-->
+
+									<a class="aspect aspect--bg-grey aspect--1366-768 u-d-block"
+										href="blog-detail.html"> <img class="aspect__img"
+										th:src="@{/clients/images/blog/post-12.jpg}" alt=""></a>
+									<!--====== End - Image Code ======-->
+								</div>
+								<div class="bp-mini__content">
+									<div class="bp-mini__stat">
+
+										<span class="bp-mini__stat-wrap"> <span
+											class="bp-mini__publish-date"> <a> <span>25
+														February 2018</span></a></span></span> <span class="bp-mini__stat-wrap"> <span
+											class="bp-mini__preposition">By</span> <span
+											class="bp-mini__author"> <a href="#">Dayle</a></span></span> <span
+											class="bp-mini__stat"> <span class="bp-mini__comment">
+
+												<a href="blog-detail.html"><i
+													class="far fa-comments u-s-m-r-4"></i> <span>8</span></a>
+										</span></span>
+									</div>
+									<div class="bp-mini__category">
+
+										<a>Learning</a> <a>News</a> <a>Health</a>
+									</div>
+
+									<span class="bp-mini__h1"> <a href="blog-detail.html">Wait
+											till its open</a></span>
+									<p class="bp-mini__p">Lorem Ipsum is simply dummy text of
+										the printing and typesetting industry.</p>
+									<div class="blog-t-w">
+
+										<a class="gl-tag btn--e-transparent-hover-brand-b-2">Travel</a>
+
+										<a class="gl-tag btn--e-transparent-hover-brand-b-2">Culture</a>
+
+										<a class="gl-tag btn--e-transparent-hover-brand-b-2">Place</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 u-s-m-b-30">
+							<div class="bp-mini bp-mini--img u-h-100">
+								<div class="bp-mini__thumbnail">
+
+									<!--====== Image Code ======-->
+
+									<a class="aspect aspect--bg-grey aspect--1366-768 u-d-block"
+										href="blog-detail.html"> <img class="aspect__img"
+										th:src="@{/clients/images/blog/post-5.jpg}" alt=""></a>
+									<!--====== End - Image Code ======-->
+								</div>
+								<div class="bp-mini__content">
+									<div class="bp-mini__stat">
+
+										<span class="bp-mini__stat-wrap"> <span
+											class="bp-mini__publish-date"> <a> <span>25
+														February 2018</span></a></span></span> <span class="bp-mini__stat-wrap"> <span
+											class="bp-mini__preposition">By</span> <span
+											class="bp-mini__author"> <a href="#">Dayle</a></span></span> <span
+											class="bp-mini__stat"> <span class="bp-mini__comment">
+
+												<a href="blog-detail.html"><i
+													class="far fa-comments u-s-m-r-4"></i> <span>8</span></a>
+										</span></span>
+									</div>
+									<div class="bp-mini__category">
+
+										<a>Learning</a> <a>News</a> <a>Health</a>
+									</div>
+
+									<span class="bp-mini__h1"> <a href="blog-detail.html">Tell
+											me difference between smoke and vape</a></span>
+									<p class="bp-mini__p">Lorem Ipsum is simply dummy text of
+										the printing and typesetting industry.</p>
+									<div class="blog-t-w">
+
+										<a class="gl-tag btn--e-transparent-hover-brand-b-2">Travel</a>
+
+										<a class="gl-tag btn--e-transparent-hover-brand-b-2">Culture</a>
+
+										<a class="gl-tag btn--e-transparent-hover-brand-b-2">Place</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Content ======-->
+		</div>
+		<!--====== End - Section 10 ======-->
+
+		<!--====== Section 4 ======-->
+		<div class="u-s-p-b-90 u-s-m-b-30">
+
+			<!--====== Section Intro ======-->
+			<div class="section__intro u-s-m-b-46">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="section__text-wrap">
+								<h1 class="section__heading u-c-secondary u-s-m-b-12">PHẢN
+									HỒI TỪ KHÁCH HÀNG</h1>
+
+								<span class="section__span u-c-silver">KHÁCH HÀNG CỦA
+									CHÚNG TÔI NGHĨ GÌ</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Intro ======-->
+
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+
+					<!--====== Testimonial Slider ======-->
+					<div>
+						<div class="owl-carousel owl-loaded owl-drag"
+							id="testimonial-slider">
+							<div class="owl-stage-outer">
+								<div class="owl-stage"
+									style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1804px;">
+									<div class="owl-item" style="width: 451px;"
+										th:each="item: ${feedbacks}" th:if="${item.status == true}">
+										<div class="testimonial">
+											<div class="testimonial__img-wrap">
+
+												<img class="testimonial__img"
+													th:src="@{clients/images/about/test-1.png}" alt="">
+											</div>
+											<div class="testimonial__content-wrap">
+
+												<span class="testimonial__double-quote"><i
+													class="fas fa-quote-right"></i></span>
+												<blockquote class="testimonial__block-quote">
+													<p th:text="${item.content}"></p>
+												</blockquote>
+
+												<span class="testimonial__author" th:text="${item.username}">John
+													D. / DVNTR Inc.</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="owl-nav disabled">
+								<button type="button" role="presentation" class="owl-prev">
+									<span aria-label="Previous">‹</span>
+								</button>
+								<button type="button" role="presentation" class="owl-next">
+									<span aria-label="Next">›</span>
+								</button>
+							</div>
+
+						</div>
+					</div>
+					<!--====== End - Testimonial Slider ======-->
+				</div>
+			</div>
+			<!--====== End - Section Content ======-->
+		</div>
+		<!--====== End - Section 4 ======-->
+	</div>
+</body>
+
+</html>

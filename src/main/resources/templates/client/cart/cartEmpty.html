@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{client/clientLayout.html}">
+
+<head>
+</head>
+
+<body>
+	<div class="app-content" layout:fragment="content">
+
+		<!--====== Section 1 ======-->
+		<div class="u-s-p-y-60">
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 u-s-m-b-30">
+							<div th:if="${message != null}" class="alert alert-success"
+								role="alert">
+								<i>[[${message}]]</i>
+							</div>
+							<div class="empty">
+								<div class="empty__wrap">
+
+									<span class="empty__big-text">TRỐNG</span> <span
+										class="empty__text-1">Không có sản phẩm nào được tìm
+										thấy trên giỏ hàng của bạn.</span> <a
+										class="empty__redirect-link btn--e-brand" th:href="@{/}">TIẾP
+										TỤC MUA SẮM</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Content ======-->
+		</div>
+		<!--====== End - Section 1 ======-->
+	</div>
+</body>
+</html>

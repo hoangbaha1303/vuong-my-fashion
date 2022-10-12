@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{client/clientLayout.html}">
+
+<head>
+</head>
+
+<body>
+	<div class="app-content" layout:fragment="content">
+
+		<!--====== Section 1 ======-->
+		<div class="u-s-p-y-60">
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="breadcrumb">
+						<div class="breadcrumb__wrap">
+							<ul class="breadcrumb__list">
+								<li class="has-separator"><a th:href="@{/}">Trang chủ</a></li>
+								<li class="is-marked"><a th:href="@{/login}">Đăng nhập</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--====== End - Section 1 ======-->
+
+
+		<!--====== Section 2 ======-->
+		<div class="u-s-p-b-60">
+
+			<!--====== Section Intro ======-->
+			<div class="section__intro u-s-m-b-60">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="section__text-wrap">
+								<h1 class="section__heading u-c-secondary">BẠN ĐÃ ĐĂNG KÝ
+									TÀI KHOẢN CHƯA?</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Intro ======-->
+
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="row row--center">
+						<div class="col-lg-6 col-md-8 u-s-m-b-30">
+							<div class="l-f-o">
+								<div class="l-f-o__pad-box">
+									<h1 class="gl-h1">TÔI LÀ NGƯỜI DÙNG MỚI</h1>
+
+									<span class="gl-text u-s-m-b-30">Khi bạn tạo tài khoản
+										với cửa hàng của chúng tôi, bạn sẽ có thể thực hiện quy trình
+										thanh toán nhanh hơn, lưu trữ địa chỉ giao hàng, xem và theo
+										dõi đơn đặt hàng trong tài khoản của bạn và hơn thế nữa.</span>
+									<div class="u-s-m-b-15">
+
+										<a class="l-f-o__create-link btn--e-transparent-brand-b-2"
+											th:href="@{/register}">TẠO TÀI KHOẢN</a>
+									</div>
+									<h1 class="gl-h1">ĐĂNG NHẬP</h1>
+
+									<span class="gl-text u-s-m-b-30">Nếu bạn có tài khoản
+										với chúng tôi, vui lòng đăng nhập.</span>
+									<form class="l-f-o__form" th:action="@{/login}" method="post"
+										th:object="${user}">
+										<div class="gl-s-api">
+											<div class="u-s-m-b-15">
+
+												<button class="gl-s-api__btn gl-s-api__btn--fb"
+													type="button">
+													<i class="fab fa-facebook-f"></i> <span>Đăng nhập
+														với Facebook</span>
+												</button>
+											</div>
+											<div class="u-s-m-b-15">
+
+												<button class="gl-s-api__btn gl-s-api__btn--gplus"
+													type="button">
+													<i class="fab fa-google"></i> <span>Đăng nhập với
+														Google</span>
+												</button>
+											</div>
+										</div>
+										<div th:if="${message != null}" class="alert alert-success"
+											role="alert">
+											<i>[[${message}]]</i>
+										</div>
+										<div class="u-s-m-b-30">
+
+											<label class="gl-label" for="login-email">TÀI KHOẢN *</label>
+
+											<input class="input-text input-text--primary-style"
+												th:field="*{userName}" type="text" id="login-email"
+												placeholder="Nhập tài khoản" aria-describedby="hUserName">
+												<small th:if="${#fields.hasErrors('userName')}" id="hUserName"
+											class="text-muted">Tài khoản không được để trống</small>
+										</div>
+										
+										<div class="u-s-m-b-30">
+
+											<label class="gl-label" for="login-password">MẬT KHẨU
+												*</label> <input class="input-text input-text--primary-style"
+												type="password" th:field="*{password}" id="login-password"
+												placeholder="Nhập mật khẩu" aria-describedby="hPW"> <small
+												th:if="${#fields.hasErrors('password')}" id="hPW"
+												class="text-muted">Mật khẩu không được để trống</small>
+										</div>
+
+										<div class="gl-inline">
+											<div class="u-s-m-b-30">
+
+												<button class="btn btn--e-transparent-brand-b-2"
+													type="submit">ĐĂNG NHẬP</button>
+											</div>
+											<div class="u-s-m-b-30">
+
+												<a class="gl-link" th:href="@{/forgotPassword}">Quên Mật
+													Khẩu?</a>
+											</div>
+										</div>
+										<div class="u-s-m-b-30">
+
+											<!--====== Check Box ======-->
+											<div class="check-box">
+
+												<input type="checkbox" th:field="*{rememberMe}"
+													value="false" id="remember-me">
+												<div class="check-box__state check-box__state--primary">
+
+													<label class="check-box__label" for="remember-me">Duy
+														trì đăng nhập</label>
+												</div>
+											</div>
+											<!--====== End - Check Box ======-->
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Content ======-->
+		</div>
+		<!--====== End - Section 2 ======-->
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/dashboardLayout.html}">
+<head></head>
+<body>
+	<div class="col-lg-12 grid-margin stretch-card"
+		layout:fragment="content">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Danh Sách Đơn Đặt Hàng</h4>
+
+				<div th:if="${message != null}" class="alert alert-success"
+					role="alert">
+					<i>[[${message}]]</i>
+				</div>
+
+				<div th:if="${!orderPage.hasContent()}" class="alert alert-danger"
+					role="alert">
+					<i>Không tìm thấy sản phẩm</i>
+				</div>
+				<div class="table-responsive" th:if="${orderPage.hasContent()}">
+					<table class="table table-dark">
+						<thead>
+							<tr>
+								<th>Mã ĐH</th>
+								<th>Ngày Đặt</th>
+								<th>Ngày Giao</th>
+								<th>Trạng Thái</th>
+								<th>Tổng Tiền</th>
+								<th>###</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="item: ${orderPage}">
+								<td th:text="${item.orderID}">3054231326</td>
+								<td
+									th:text="${#dates.format(item.orderDate, 'dd-MM-yyyy HH:mm')}">26/13/2016</td>
+								<td
+									th:text="${#dates.format(item.deliveryDate, 'dd-MM-yyyy HH:mm')}">26/13/2016</td>
+								<td th:if="${item.status == 1}"><span
+									class="badge badge-warning">Chờ Xác Nhận</span></td>
+								<td th:if="${item.status == 2}"><span
+									class="badge badge-primary">Đang Giao</span></td>
+								<td th:if="${item.status == 3}"><span
+									class="badge badge-success">Đã Giao</span></td>
+								<td th:if="${item.status == 4}"><span
+									class="badge badge-danger">Đã Hủy</span></td>
+								<td th:if="${item.status == 5}"><span
+									class="badge badge-info">Trả Hàng</span></td>
+								<td>
+									<div class="dash__table-total" th:each="entry: ${total}">
+										<th:block th:if="${entry.key == item.orderID}">
+											<span
+												th:text="${#numbers.formatDecimal(entry.value,3,'POINT',0,'COMMA')+ ' VNĐ'}">$126.00</span>
+											
+										</th:block>
+									</div>
+								</td>
+								<td><a
+									th:href="@{'/admin/orders/detail/' + ${item.orderID}} "
+									class="btn btn-success btn-rounded btn-sm"> <span
+										class="mdi mdi-eye"></span> Xem
+								</a> <a th:href="@{'/admin/orders/edit/' + ${item.orderID}}"
+									class="btn btn-primary btn-rounded btn-sm"> <span
+										class="mdi mdi-grease-pencil"></span> Sửa
+								</a>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+
+			<div class="card-footer text-muted row">
+				<form action="" class="col-7">
+					<div class="form-group row">
+						<div class="col-6 row">
+							<label class="col-sm-3 col-form-label">Hàng</label>
+							<div class="col-sm-9">
+								<select class="form-control" name="size"
+									onchange="this.form.submit()">
+									<option th:selected="${orderPage.size ==5}" value="5">5</option>
+									<option th:selected="${orderPage.size ==10}" value="10">10</option>
+									<option th:selected="${orderPage.size ==15}" value="15">15</option>
+									<option th:selected="${orderPage.size ==20}" value="20">20</option>
+									<option th:selected="${orderPage.size ==30}" value="30">30</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-6 row">
+							<label class="col-sm-3 col-form-label">Sắp xếp</label>
+							<div class="col-sm-9">
+								<select class="form-control" name="sort"
+									onchange="this.form.submit()">
+									<option
+										th:selected="${sort==1}" value="1">Ngày Đặt Mới Nhất</option>
+									<option
+										th:selected="${sort==2}" value="2">Ngày Đặt Cũ Nhất</option>
+									<option
+										th:selected="${sort==3}" value="3">Trạng Thái Tăng</option>
+									<option
+										th:selected="${sort==4}" value="4">Trạng Thái Giảm</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</form>
+				<nav aria-label="Page navigation example" class="col-5"
+					th:if="${orderPage.totalPages > 0}">
+					<ul class="pagination justify-content-end">
+						<li th:class="${ 1 == orderPage.number + 1} ? 'is-active': ''">
+							<a
+							th:href="@{/admin/orders(sort=${sort},size=${orderPage.size}, page=${1})}"
+							class="page-link">Đầu</a>
+						</li>
+						<li class="page-item" th:each="pageNumber : ${pageNumbers}"
+							th:if="${orderPage.totalPages > 1}"
+							th:class="${pageNumber == orderPage.number + 1} ? 'is-active': ''">
+							<a
+							th:href="@{/admin/orders(sort=${sort}, size=${orderPage.size}, page=${pageNumber})}"
+							class="page-link" th:text="${pageNumber}"></a>
+						</li>
+						<li
+							th:class="${ orderPage.totalPages == orderPage.number + 1} ? 'is-active': ''">
+							<a
+							th:href="@{/admin/orders(sort=${sort}, size=${orderPage.size}, page=${orderPage.totalPages})}"
+							class="page-link">Cuối</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

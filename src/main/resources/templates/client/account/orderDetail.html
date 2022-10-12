@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{client/account/clientAccountLayout.html}">
+
+<head>
+</head>
+
+<body>
+	<div class="col-lg-9 col-md-12" layout:fragment="content">
+		<h1 class="dash__h1 u-s-m-b-30">CHI TIẾT ĐƠN HÀNG</h1>
+		<div
+			class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
+			<div class="dash__pad-2">
+				<div class="dash-l-r">
+					<div>
+						<div class="manage-o__text-2 u-c-secondary" th:text="'Đơn hàng #'+${order.orderID}"></div>
+						<div class="manage-o__text u-c-silver" th:text="'Ngày Đặt: '+${#dates.format(order.orderDate, 'dd-MM-yyyy HH:mm')}"></div>
+					</div>
+					<div>
+						<div class="manage-o__text-2 u-c-silver">
+							Tổng Thanh Toán: <span class="manage-o__text-2 u-c-secondary" th:text="${#numbers.formatDecimal(total,3,'POINT',0,'COMMA')+ ' VNĐ'}" >$16.00</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div
+			class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
+			<div class="dash__pad-2">
+				<div class="manage-o">
+					<div class="manage-o__header u-s-m-b-30">
+						<div class="manage-o__icon">
+							<i class="fas fa-box u-s-m-r-5"></i> <span class="manage-o__text">Gói
+								1</span>
+						</div>
+					</div>
+					<div class="dash-l-r">
+						<div class="manage-o__text u-c-secondary" th:text="'Ngày Giao: '+${#dates.format(order.deliveryDate, 'dd-MM-yyyy HH:mm')}"></div>
+						<div class="manage-o__icon">
+							<i class="fas fa-truck u-s-m-r-5"></i> <span
+								class="manage-o__text">Cơ Bản</span>
+						</div>
+					</div>
+					<div class="manage-o__timeline">
+						<div class="timeline-row" th:if="${order.status != 4}">
+							<div class="col-lg-3 u-s-m-b-30">
+								<div class="timeline-step">
+									<div th:class="'timeline-l-i'+${order.status >= 1? ' timeline-l-i--finish':''}">
+
+										<span th:class="${order.status == 1?'timeline-circle':''}"></span>
+									</div>
+
+									<span class="timeline-text">Chờ Xác Nhận</span>
+								</div>
+							</div>
+							
+							<div class="col-lg-3 u-s-m-b-30">
+								<div class="timeline-step">
+									<div th:class="'timeline-l-i'+${order.status >= 2? ' timeline-l-i--finish':''}">
+
+										<span th:class="${order.status == 2?'timeline-circle':''}" ></span>
+									</div>
+
+									<span class="timeline-text">Đang Giao</span>
+								</div>
+							</div>
+							<div class="col-lg-3 u-s-m-b-30">
+								<div class="timeline-step">
+									<div th:class="'timeline-l-i'+${order.status >= 3? ' timeline-l-i--finish':''}">
+
+										<span th:class="${order.status == 3?'timeline-circle':''}"></span>
+									</div>
+
+									<span class="timeline-text">Đã Giao</span>
+								</div>
+							</div>
+							<div class="col-lg-3 u-s-m-b-30">
+								<div class="timeline-step">
+									<div th:class="'timeline-l-i'+${order.status >= 5? ' timeline-l-i--finish':''}">
+
+										<span th:class="${order.status == 5?'timeline-circle':''}"></span>
+									</div>
+
+									<span class="timeline-text">Trả Hàng</span>
+								</div>
+							</div>
+							
+						</div>
+						<div class="timeline-row" th:if="${order.status == 4}">
+							<div class="col-lg-3 u-s-m-b-30">
+								<div class="timeline-step">
+									<div th:class="'timeline-l-i'+${order.status >= 4? ' timeline-l-i--finish':''}">
+
+										<span class="timeline-circle"></span>
+									</div>
+
+									<span class="timeline-text">Đã Hủy</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="manage-o__description" th:each="item: ${orderDetails}">
+						<div class="description__container">
+							<div class="description__img-wrap">
+
+								<img class="u-img-fluid"
+									src="" alt="">
+							</div>
+							<div class="description-title" th:text="${item.productName}">Yellow Wireless Headphone</div>
+						</div>
+						<div class="description__info-wrap">
+							<div>
+
+								<span class="manage-o__text-2 u-c-silver">Số Lượng: <span
+									class="manage-o__text-2 u-c-secondary" th:text="${item.quantity}">1</span></span>
+							</div>
+							<div>
+
+								<span class="manage-o__text-2 u-c-silver">Tổng: <span
+									class="manage-o__text-2 u-c-secondary" th:text="${#numbers.formatDecimal(item.price*item.quantity,3,'POINT',0,'COMMA')+ ' VNĐ'}">$16.00</span></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6">
+				<div
+					class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
+					<div class="dash__pad-3">
+						<h2 class="dash__h2 u-s-m-b-8">Địa Chỉ Giao Hàng</h2>
+						<h2 class="dash__h2 u-s-m-b-8" th:text="${account.name}">John Doe</h2>
+
+						<span class="dash__text-2" th:text="${account.address}">4247 Ashford Drive Virginia -
+							VA-20006 - USA</span> <span class="dash__text-2" th:text="${account.phone}">(+0) 900901904</span>
+					</div>
+				</div>
+				
+			</div>
+			<div class="col-lg-6">
+				<div class="dash__box dash__box--bg-white dash__box--shadow u-h-100">
+					<div class="dash__pad-3">
+						<h2 class="dash__h2 u-s-m-b-8">Tổng Đơn Hàng</h2>
+						<div class="dash-l-r u-s-m-b-8">
+							<div class="manage-o__text-2 u-c-secondary">Tổng Tiền</div>
+							<div class="manage-o__text-2 u-c-secondary" th:text="${#numbers.formatDecimal(total,3,'POINT',0,'COMMA')+ ' VNĐ'}">$16.00</div>
+						</div>
+						<div class="dash-l-r u-s-m-b-8">
+							<div class="manage-o__text-2 u-c-secondary">Phí Vận Chuyển</div>
+							<div class="manage-o__text-2 u-c-secondary">0đ</div>
+						</div>
+						<div class="dash-l-r u-s-m-b-8">
+							<div class="manage-o__text-2 u-c-secondary">Tổng Thanh Toán</div>
+							<div class="manage-o__text-2 u-c-secondary" th:text="${#numbers.formatDecimal(total,3,'POINT',0,'COMMA')+ ' VNĐ'}">$30.00</div>
+						</div>
+
+						<span class="dash__text-2">Paid by Cash on Delivery</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

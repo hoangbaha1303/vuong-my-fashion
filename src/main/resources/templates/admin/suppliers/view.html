@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/dashboardLayout.html}">
+
+<head></head>
+
+<body>
+	<div class="col-12 grid-margin stretch-card" layout:fragment="content">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">CHI TIẾT NHÀ PHÂN PHỐI</h4>
+
+				<div th:if="${message != null}" class="alert alert-success" role="alert">
+					<i>[[${message}]]</i>
+				</div>
+
+				<div class="form-group">
+					<label>Mã Nhà Phân Phối: <span th:text="${view.id}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Tên Nhà Phân Phối: <span th:text="${view.name}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="email">Email: <span th:text="${view.email}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="address">Địa Chỉ: <span th:text="${view.address}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="phone">Số Điện Thoại: <span th:text="${view.phone}"></span></label>
+				</div>
+				
+				<a class="btn btn-outline-primary btn-icon-text" th:href="@{/admin/suppliers/addOrEdit}">
+					<i class="mdi mdi-file-check btn-icon-prepend"></i> Thêm Nhà Phân Phối Mới
+				</a>
+				
+				<a class="btn btn-outline-info btn-icon-text" th:href="@{/admin/suppliers}"><i
+						class="mdi mdi-printer btn-icon-append"></i> Danh Sách Nhà Phân Phối </a>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

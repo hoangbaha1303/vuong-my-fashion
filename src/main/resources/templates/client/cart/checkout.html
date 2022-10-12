@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{client/clientLayout.html}">
+
+<head>
+</head>
+
+<body>
+	<div class="app-content" layout:fragment="content">
+
+		<!--====== Section 1 ======-->
+		<div class="u-s-p-y-60">
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="breadcrumb">
+						<div class="breadcrumb__wrap">
+							<ul class="breadcrumb__list">
+								<li class="has-separator"><a th:href="@{/}">Trang Chủ</a></li>
+								<li class="is-marked"><a th:href="@{/carts/checkout}">Thanh
+										Toán</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--====== End - Section 1 ======-->
+
+		<!--====== Section 3 ======-->
+		<div class="u-s-p-b-60">
+
+			<!--====== Section Content ======-->
+			<div class="section__content">
+				<div class="container">
+					<div class="checkout-f">
+						<div class="row">
+							<div class="col-lg-6">
+								<h1 class="checkout-f__h1">THÔNG TIN GIAO HÀNG</h1>
+								<form class="checkout-f__delivery" th:object="${account}">
+									<div class="u-s-m-b-30">
+										<div class="u-s-m-b-15">
+											<label class="gl-label" for="reg-name">HỌ TÊN *</label> <input
+												class="input-text input-text--primary-style"
+												th:field="*{name}" type="text" id="reg-name"
+												placeholder="Nhập Họ Tên" aria-describedby="hName">
+											<small th:if="${#fields.hasErrors('name')}" id="hName"
+												class="text-muted">Họ tên không được để trống</small>
+										</div>
+
+										<div class="u-s-m-b-15">
+											<label class="gl-label" for="reg-email">E-MAIL *</label> <input
+												class="input-text input-text--primary-style" type="text"
+												th:field="*{email}" id="reg-email" placeholder="Nhập Email"
+												aria-describedby="hEmail"> <small
+												th:if="${#fields.hasErrors('email')}" id="hEmail"
+												class="text-muted" th:errors="*{email}"></small>
+										</div>
+										
+										<div class="u-s-m-b-15">
+											<label class="gl-label" for="reg-phone">SỐ ĐIỆN THOẠI
+												*</label> <input class="input-text input-text--primary-style"
+												type="text" th:field="*{phone}" id="reg-phone"
+												placeholder="Nhập Số Điện Thoại" aria-describedby="hPhone">
+											<small th:if="${#fields.hasErrors('phone')}" id="hPhone"
+												class="text-muted" th:errors="*{phone}">Địa chỉ
+												không được để trống</small>
+										</div>
+										<div class="u-s-m-b-15">
+											<label class="gl-label" for="reg-address">ĐỊA CHỈ *</label> <input
+												class="input-text input-text--primary-style" type="text"
+												th:field="*{address}" id="reg-address"
+												placeholder="Nhập Địa Chỉ" aria-describedby="hAddress">
+											<small th:if="${#fields.hasErrors('address')}" id="hAddress"
+												class="text-muted">Địa chỉ không được để trống</small>
+										</div>
+										
+										
+									</div>
+								</form>
+							</div>
+							<div class="col-lg-6">
+								<h1 class="checkout-f__h1">TÓM TẮT ĐƠN HÀNG</h1>
+
+								<!--====== Order Summary ======-->
+								<div class="o-summary">
+									<div class="o-summary__section u-s-m-b-30">
+										<div class="o-summary__item-wrap gl-scroll">
+											<div class="o-card" th:each="item: ${session.cartItems}">
+												<div class="o-card__flex">
+													<div class="o-card__img-wrap">
+
+														<img class="u-img-fluid" th:src="'/images/'+${item.image}"
+															alt="">
+													</div>
+													<div class="o-card__info-wrap">
+
+														<span class="o-card__name"> <a
+															th:href="@{'/products/detail/'+${item.productID}}"
+															th:text="${item.name}">Yellow Wireless Headphone</a></span> <span
+															class="o-card__quantity"
+															th:text="'Số lượng x'+${item.quantity}">Quantity x
+															1</span> <span class="o-card__price"
+															th:if="${item.promotionPrice != null}"
+															th:text="${#numbers.formatDecimal(item.promotionPrice,3,'POINT',0,'COMMA')+ ' VNĐ'}">$150.00</span>
+														<span class="o-card__price"
+															th:if="${item.promotionPrice == null}"
+															th:text="${#numbers.formatDecimal(item.price,3,'POINT',0,'COMMA')+ ' VNĐ'}">$150.00</span>
+													</div>
+												</div>
+
+												<a class="o-card__del far fa-trash-alt"></a>
+											</div>
+										</div>
+									</div>
+									<div class="o-summary__section u-s-m-b-30">
+										<div class="o-summary__box">
+											<h1 class="checkout-f__h1">VẬN CHUYỂN &amp; THANH TOÁN</h1>
+											<div class="ship-b">
+
+												<span class="ship-b__text">Giao hàng tới:</span>
+												<div class="ship-b__box u-s-m-b-10">
+													<p class="ship-b__p"
+														th:text="${account.address}+' '+ ${account.phone}">4247
+														Ashford Drive Virginia VA-20006 USA (+0) 900901904</p>
+
+													<a class="ship-b__edit btn--e-transparent-platinum-b-2"
+														data-modal="modal" data-modal-id="#edit-ship-address">Sửa</a>
+												</div>
+												<div class="ship-b__box">
+
+													<span class="ship-b__text">Thanh Toán Khi Giao Hàng</span>
+
+													<a class="ship-b__edit btn--e-transparent-platinum-b-2"
+														data-modal="modal" data-modal-id="#edit-ship-address">Sửa</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="o-summary__section u-s-m-b-30">
+										<div class="o-summary__box">
+											<table class="o-summary__table">
+												<tbody>
+													<tr>
+														<td>PHÍ VẬN CHUYỂN</td>
+														<td>$</td>
+													</tr>
+
+													<tr>
+														<td>TỔNG TIỀN</td>
+														<td
+															th:text="${#numbers.formatDecimal(session.total,3,'POINT',0,'COMMA')+ ' VNĐ'}">$379.00</td>
+													</tr>
+													<tr>
+														<td>TỔNG THANH TOÁN</td>
+														<td
+															th:text="${#numbers.formatDecimal(session.total,3,'POINT',0,'COMMA')+ ' VNĐ'}">$379.00</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="o-summary__section u-s-m-b-30">
+										<div class="o-summary__box">
+											<h1 class="checkout-f__h1">PHƯƠNG THỨC THANH TOÁN</h1>
+											<form class="checkout-f__payment" th:action="@{/carts/checkout}" method="post">
+												<div class="u-s-m-b-10">
+
+													<!--====== Radio Box ======-->
+													<div class="radio-box">
+
+														<input type="radio" id="cash-on-delivery" name="payment">
+														<div class="radio-box__state radio-box__state--primary">
+
+															<label class="radio-box__label" for="cash-on-delivery">Thanh toán khi nhận hàng</label>
+														</div>
+													</div>
+													<!--====== End - Radio Box ======-->
+
+													<span class="gl-text u-s-m-t-6">Thanh toán ngay khi khách hàng nhận được hàng</span>
+												</div>
+												<button class="btn btn--e-brand-b-2" type="submit">ĐẶT HÀNG</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<!--====== End - Order Summary ======-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--====== End - Section Content ======-->
+		</div>
+		<!--====== End - Section 3 ======-->
+	</div>
+</body>
+</html>

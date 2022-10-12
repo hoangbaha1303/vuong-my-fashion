@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/dashboardLayout.html}">
+
+<head></head>
+
+<body>
+	<div class="col-12 grid-margin stretch-card" layout:fragment="content">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">CHI TIẾT SẢN PHẨM</h4>
+
+				<div th:if="${message != null}" class="alert alert-success" role="alert">
+					<i>[[${message}]]</i>
+				</div>
+
+				<div class="form-group">
+					<label>Mã sản phẩm: <span th:text="${view.productID}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Tên sản phẩm: <span th:text="${view.name}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Loại sản phẩm: <span th:each="category : ${categories}" th:if="${category.cateID == view.cateID}" th:text="${category.name}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Thương hiệu: <span th:each="brand : ${brands}" th:if="${brand.id == view.brandID}" th:text="${brand.name}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Nhà cung cấp: <span th:each="supplier : ${suppliers}" th:if="${supplier.id == view.supplierID}" th:text="${supplier.name}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Giá bán: <span th:text="${view.price}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Giá khuyến mãi: <span th:text="${view.promotionPrice}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Hình: </label>
+					<img th:if="${view.image == null}" th:src="@{admin/assets/images/products/noimage.jpg}" alt=""
+								width="51%" class="img-responsive mx-auto d-block">
+					<img th:if="${view.image != null}" th:src="${'/admin/products/images/' + view.image}" alt=""
+								width="51%" class="img-responsive mx-auto d-block">
+				</div>
+				<div class="form-group">
+					<label for="name">Ngày tạo: <span th:text="${view.createDate}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Tạo bởi: <span th:text="${view.createBy}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Ngày sửa: <span th:text="${view.updateDate}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Sửa bởi: <span th:text="${view.updateBy}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Số lượng: <span th:text="${view.viewCount}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Bảo hành (tháng): <span th:text="${view.warranty}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">VAT: <span th:text="${view.vat?'Có':'Không'}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Trạng thái: <span th:text="${view.status?'Hoạt động':'Bị khóa'}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Mô tả: <span th:text="${view.description}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Chi tiết sản phẩm: <span th:text="${view.detail}"></span></label>
+				</div>
+				<a class="btn btn-outline-primary btn-icon-text" th:href="@{/admin/products/add}">
+					<i class="mdi mdi-file-check btn-icon-prepend"></i> Thêm loại sản phẩm mới
+				</a>
+				
+				<a class="btn btn-outline-info btn-icon-text" th:href="@{/admin/products}"><i
+						class="mdi mdi-printer btn-icon-append"></i> Danh sách loại sản
+					phẩm </a>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

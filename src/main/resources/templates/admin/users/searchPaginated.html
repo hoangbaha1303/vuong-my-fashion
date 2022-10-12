@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/dashboardLayout.html}">
+<head></head>
+<body>
+	<div class="col-lg-12 grid-margin stretch-card" layout:fragment="content">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Danh Sách Người Dùng</h4>
+				<div class="row">
+					<form th:action="@{/admin/users}"
+						class="col-9">
+						<div class="form-group">
+							<div class="input-group">
+								<input type="text" name="name" class="form-control"
+									placeholder="Nhập để tìm kiếm"
+									aria-label="Recipient's username"
+									aria-describedby="basic-addon2">
+								<div class="input-group-append">
+									<button class="btn btn-md btn-primary" type="submit">
+										Tìm kiếm</button>
+								</div>
+							</div>
+						</div>
+					</form>
+					<div class="float-right col-3">
+						<a class="btn btn-md btn-success "
+							th:href="@{admin/users/addOrEdit}"> <span
+							class="mdi mdi-account-plus"></span> Thêm người dùng mới
+						</a>
+					</div>
+				</div>
+
+				<div th:if="${message != null}" class="alert alert-success"
+					role="alert">
+					<i>[[${message}]]</i>
+				</div>
+
+				<div th:if="${!userPage.hasContent()}"
+					class="alert alert-danger" role="alert">
+					<i>Không có người dùng nào trong danh sách</i>
+				</div>
+				<div class="table-responsive" th:if="${userPage.hasContent()}">
+					<table class="table table-dark">
+						<thead>
+							<tr>
+								<th>Mã người dùng</th>
+								<th>Tài khoản</th>
+								<th>Nhóm người dùng</th>
+								<th>Tên người dùng</th>
+								<th>Email</th>
+								<th>SĐT</th>
+								<th>Trạng thái</th>
+								<th>#</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each=" user : ${userPage}">
+								<td th:text="${user.id}"></td>
+								<td th:text="${user.userName}"></td>
+								<td th:each="item : ${userGroups}" th:if="${item.id == user.groupID}" th:text="${item.name}"></td>
+								<td th:text="${user.name}"></td>
+								<td th:text="${user.email}"></td>
+								<td th:text="${user.phone}"></td>
+								<td th:text="${user.status?'Hoạt động':'Bị khóa'}"></td>
+								<td><a
+									th:href="@{'/admin/users/view/' + ${user.id} } "
+									class="btn btn-success btn-rounded btn-sm"> <span
+										class="mdi mdi-eye"></span> Xem
+								</a> <a th:href="@{'/admin/users/edit/' + ${user.id}}"
+									class="btn btn-primary btn-rounded btn-sm"> <span
+										class="mdi mdi-grease-pencil"></span> Sửa
+								</a> <a th:data-id="${user.id}" th:data-name="${user.name}"
+								onclick="showConfirmModalDialog(this.getAttribute('data-id'), this.getAttribute('data-name'))"
+									class="btn btn-danger btn-rounded btn-sm"> <span
+										class="mdi mdi-delete"></span> Xóa
+								</a></td>
+							</tr>
+
+						</tbody>
+					</table>
+					<script>
+						function showConfirmModalDialog(id, name){
+							$('#productName').text(name);
+							$('#yesOption').attr('href','/admin/users/delete/'+ id);
+							$('#confirmationId').modal('show');
+						}
+					</script>
+
+					<!-- Modal -->
+					<div class="modal fade" id="confirmationId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title">Xác nhận</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+								</div>
+								<div class="modal-body">
+									Bạn thực sự có muốn xóa <span id="productName"></span>
+								</div>
+								<div class="modal-footer">
+									<a id="yesOption" type="button" class="btn btn-primary">Có</a>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="card-footer text-muted row">
+				<form action="" class="col-4">
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Hàng</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="size" onchange="this.form.submit()">
+								<option th:selected="${userPage.size ==5}" value="5">5</option>
+								<option th:selected="${userPage.size ==10}" value="10">10</option>
+								<option th:selected="${userPage.size ==15}" value="15">15</option>
+								<option th:selected="${userPage.size ==20}" value="20">20</option>
+								<option th:selected="${userPage.size ==30}" value="30">30</option>
+							</select>
+						</div>
+					</div>
+				</form>
+				<nav aria-label="Page navigation example" class="col-8"
+					th:if="${userPage.totalPages > 0}">
+					<ul class="pagination justify-content-end">
+						<li
+							th:class="${ 1 == userPage.number + 1} ? 'page-item active': 'page-item'">
+							<a
+							th:href="@{/admin/users(name=${name}, size=${userPage.size}, page=${1})}"
+							class="page-link">Đầu</a>
+						</li>
+						<li class="page-item" th:each="pageNumber : ${pageNumbers}"
+							th:if="${userPage.totalPages > 1}"
+							th:class="${pageNumber == userPage.number + 1} ? 'page-item active' : 'page-item'">
+							<a
+							th:href="@{/admin/users(name=${name}, size=${userPage.size}, page=${pageNumber})}"
+							class="page-link" th:text="${pageNumber}"></a>
+						</li>
+						<li
+							th:class="${ userPage.totalPages == userPage.number + 1} ? 'page-item active': 'page-item'">
+							<a
+							th:href="@{/admin/users(name=${name}, size=${userPage.size}, page=${userPage.totalPages})}"
+							class="page-link">Cuối</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/dashboardLayout.html}">
+<head></head>
+<body>
+	<div class="col-12 grid-margin stretch-card" layout:fragment="content">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title"
+					th:text="${category.isEdit ?'SỬA LOẠI SẢN PHẨM':'THÊM LOẠI SẢN PHẨM'}"></h4>
+				<p class="card-description">Vui lòng nhập đầy đủ các thông tin
+					sau</p>
+				<div th:if="${message != null}" class="alert alert-success" role="alert">
+                <i>[[${message}]]</i>
+            	</div>
+				<form th:action="@{/admin/categories/saveOrUpdate}" method="post"
+					th:object="${category}" class="forms-sample">
+					<input type="hidden" th:field="*{isEdit}" />
+					<div class="form-group" th:if="${category.isEdit}">
+						<label for="cateID">Mã Loại Sản Phẩm</label> <input type="text"
+							class="form-control" th:field="*{cateID}"
+							placeholder="Nhập mã loại sản phẩm" readonly>
+					</div>
+					<div class="form-group">
+						<label for="name">Tên Loại Sản Phẩm</label> <input type="text"
+							class="form-control" th:field="*{name}" id="name"
+							aria-describedby="hName" placeholder="Nhập tên loại sản phẩm">
+						<small th:if="${#fields.hasErrors('name')}" id="hName"
+							class="text-muted">Tên loại sản phẩm không được để trống</small>
+					</div>
+					<div class="form-group">
+						<label for="sort">Thứ tự</label> <input type="text"
+							class="form-control" th:field="*{sort}"
+							placeholder="Nhập thứ tự xuất hiện" aria-describedby="hSort">
+						<small th:if="${#fields.hasErrors('sort')}" id="hSort"
+							class="text-muted">Thứ tự không được để trống</small>
+					</div>
+
+					<button type="submit" class="btn btn-outline-primary btn-icon-text" th:text="${category.isEdit?'Cập nhập':'Thêm mới'}">
+						<i class="mdi mdi-file-check btn-icon-prepend"></i> Lưu
+					</button>
+					<button type="button" class="btn btn-outline-warning btn-icon-text">
+						<i class="mdi mdi-reload btn-icon-prepend"></i> Làm mới
+					</button>
+					<a class="btn btn-outline-info btn-icon-text"
+						th:href="@{/admin/categories}"><i
+						class="mdi mdi-printer btn-icon-append"></i> Danh sách loại sản
+						phẩm </a>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

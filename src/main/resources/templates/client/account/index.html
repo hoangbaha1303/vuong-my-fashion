@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{client/account/clientAccountLayout.html}">
+
+<head>
+</head>
+
+<body>
+</body>
+<div class="col-lg-9 col-md-12" layout:fragment="content">
+	<div
+		class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
+		<div class="dash__pad-2">
+			<h1 class="dash__h1 u-s-m-b-14">Quản Lý Tài Khoản</h1>
+
+			<span class="dash__text u-s-m-b-30">Từ trang quản lý tài
+				khoản, bạn có thể tổng quan về hoạt động tài khoản gần đây và có thể
+				cập nhật thông tin tài khoản của mình. Chọn một liên kết bên dưới để
+				xem hoặc chỉnh sửa thông tin.</span>
+			<div class="row">
+				<div class="col-lg-4 u-s-m-b-30">
+					<div
+						class="dash__box dash__box--bg-grey dash__box--shadow-2 u-h-100">
+						<div class="dash__pad-3">
+							<h2 class="dash__h2 u-s-m-b-8">THÔNG TIN NGƯỜI DÙNG</h2>
+							<div class="dash__link dash__link--secondary u-s-m-b-8">
+
+								<a href="dash-edit-profile.html">Sửa</a>
+							</div>
+
+							<span class="dash__text" th:text="${account.name}">John
+								Doe</span> <span class="dash__text" th:text="${account.email}">johndoe@domain.com</span>
+							<div class="dash__link dash__link--secondary u-s-m-t-8">
+
+								<a data-modal="modal" data-modal-id="#dash-newsletter">Đăng
+									ký nhận tin tức</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 u-s-m-b-30">
+					<div
+						class="dash__box dash__box--bg-grey dash__box--shadow-2 u-h-100">
+						<div class="dash__pad-3">
+							<h2 class="dash__h2 u-s-m-b-8">ĐỊA CHỈ GIAO HÀNG</h2>
+
+							<span class="dash__text-2 u-s-m-b-8">Địa chỉ giao hàng mặc
+								định</span>
+							<div class="dash__link dash__link--secondary u-s-m-b-8">
+
+								<a href="dash-address-book.html">Sửa</a>
+							</div>
+
+							<span class="dash__text" th:text="${account.address}">4247
+								Ashford Drive Virginia - VA-20006 - USA</span> <span class="dash__text"
+								th:text="${account.phone}">(+0) 900901904</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 u-s-m-b-30">
+					<div
+						class="dash__box dash__box--bg-grey dash__box--shadow-2 u-h-100">
+						<div class="dash__pad-3">
+							<h2 class="dash__h2 u-s-m-b-8">ĐỊA CHỈ</h2>
+
+							<span class="dash__text-2 u-s-m-b-8">Địa chỉ người dùng</span> <span
+								class="dash__text" th:text="${account.address}">4247
+								Ashford Drive Virginia - VA-20006 - USA</span> <span class="dash__text"
+								th:text="${account.phone}">(+0) 900901904</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div
+		class="dash__box dash__box--shadow dash__box--bg-white dash__box--radius">
+		<h2 class="dash__h2 u-s-p-xy-20">TẤT CẢ ĐƠN ĐẶT HÀNG</h2>
+		<div class="dash__table-wrap gl-scroll">
+			<table class="dash__table">
+				<thead>
+					<tr>
+						<th>Mã Đơn #</th>
+						<th>Ngày Đặt</th>
+						<th>Trạng Thái</th>
+						<th>Tổng Tiền</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item: ${orders}">
+						<td th:text="${item.orderID}">3054231326</td>
+						<td th:text="${#dates.format(item.orderDate, 'dd-MM-yyyy HH:mm')}">26/13/2016</td>
+						<td th:if="${item.status == 1}"> Chờ Xác Nhận </td>
+						<td th:if="${item.status == 2}"> Đang Giao </td>
+						<td th:if="${item.status == 3}"> Đã Giao </td>
+						<td th:if="${item.status == 4}"> Đã Hủy </td>
+						<td th:if="${item.status == 5}"> Trả Hàng </td>
+						<td>
+							<div class="dash__table-total" th:each="entry: ${total}">
+								<th:block th:if="${entry.key == item.orderID}">
+									<span th:text="${#numbers.formatDecimal(entry.value,3,'POINT',0,'COMMA')+ ' VNĐ'}">$126.00</span>
+									<div class="dash__link dash__link--brand">
+
+										<a th:href="@{'/account/orders/detail/'+${item.orderID}}">CHI TIẾT</a>
+									</div>
+								</th:block>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+</html>

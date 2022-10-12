@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/dashboardLayout.html}">
+<head></head>
+<body>
+	<div class="col-12 grid-margin stretch-card" layout:fragment="content">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">CHỈNH SỬA TRANG LIÊN HỆ</h4>
+				<p class="card-description">Vui lòng nhập đầy đủ các thông tin
+					sau</p>
+				<form th:action="@{/admin/contact/saveOrUpdate}" method="post"
+					 class="forms-sample" th:object="${contact}">
+					<div class="form-group">
+						<label for="id">Mã Liên Hệ</label> <input type="text" readonly
+							th:field="*{id}" id="id" name="id" class="form-control"
+							placeholder="Nhập Mã Liên Hệ" aria-describedby="hid">
+						<small th:if="${#fields.hasErrors('id')}" id="hid" class="text-muted">Mã Liên Hệ không
+							được để trống</small>
+					</div>
+					<div class="form-group">
+						<label for="address">Địa Chỉ</label> <input type="text"
+							th:field="*{address}" name="address" id="address" class="form-control"
+							placeholder="Nhập Địa Chỉ" aria-describedby="haddress">
+						<small th:if="${#fields.hasErrors('address')}" id="haddress" class="text-muted">Địa Chỉ không
+							được để trống</small>
+					</div>
+					<div class="form-group">
+						<label for="map">Bản Đồ</label> <input type="text"
+							th:field="*{map}" name="map" id="map" class="form-control"
+							placeholder="Nhập Bản Đồ" aria-describedby="hmap">
+						<small th:if="${#fields.hasErrors('map')}" id="hmap" class="text-muted">Bản Đồ không
+							được để trống</small>
+					</div>
+					<div class="form-group">
+						<label for="phone">Số Điện Thoại</label> <input type="text"
+							th:field="*{phone}" name="phone" id="phone" class="form-control"
+							placeholder="Nhập Số Điện Thoại" aria-describedby="hphone">
+						<small th:if="${#fields.hasErrors('phone')}" id="hphone"  th:errors="*{phone}" class="text-muted">Số Điện Thoại không
+							được để trống</small>
+					</div>
+					<div class="form-group">
+						<label for="workTime">Thời Gian Làm Việc</label> <input type="text"
+							th:field="*{workTime}" name="workTime" id="workTime" class="form-control"
+							placeholder="Nhập Thời Gian Làm Việc" aria-describedby="hworkTime">
+						<small th:if="${#fields.hasErrors('workTime')}" id="hworkTime" class="text-muted">Thời Gian Làm Việc không
+							được để trống</small>
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label> <input type="text"
+							th:field="*{email}" name="email" id="email" class="form-control"
+							placeholder="Nhập Email" aria-describedby="hemail">
+						<small th:if="${#fields.hasErrors('email')}" id="hemail" class="text-muted" th:errors="*{email}">Email không
+							được để trống</small>
+					</div>
+					<button type="submit" class="btn btn-outline-primary btn-icon-text">
+						<i class="mdi mdi-file-check btn-icon-prepend"></i> Lưu
+					</button>
+					
+				</form>
+			</div>
+			<div class="card-footer">
+				<p class="card-description">Nhập nội dung để chỉnh sửa cho phần sau:</p>
+				<img th:src="@{/admins/assets/images/contact/contact.png}" alt="" />
+				<p>Cách thức chèn vị trí khác của công ty:</p>
+				<p class="card-description">B1. Chọn vị trí công ty và nhấn chia sẻ</p>
+				<img th:src="@{/admins/assets/images/contact/b1.png}" alt="" />
+				<p class="card-description">B2. Chuyển sang tab "Nhúng HTML" và thực hiện "Sao chép HTML"</p>
+				<img th:src="@{/admins/assets/images/contact/b2.png}" alt="" />
+				<p class="card-description">B3. Xóa trường Bản Đồ trong trang quản trị và thực hiện dán HTML đã copy vào</p>
+				<img th:src="@{/admins/assets/images/contact/b3.png}" alt="" />
+			</div>
+		</div>
+	</div>
+</body>
+</html>

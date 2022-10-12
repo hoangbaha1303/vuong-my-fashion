@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/dashboardLayout.html}">
+
+<head></head>
+
+<body>
+	<div class="col-12 grid-margin stretch-card" layout:fragment="content">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">CHI TIẾT LOẠI SẢN PHẨM</h4>
+
+				<div th:if="${message != null}" class="alert alert-success" role="alert">
+					<i>[[${message}]]</i>
+				</div>
+
+				<div class="form-group">
+					<label>Mã Loại Sản Phẩm: <span th:text="${view.id}"></span></label>
+				</div>
+				<div class="form-group">
+					<label for="name">Tên Loại Sản Phẩm: <span th:text="${view.name}"></span></label>
+				</div>
+				
+				<a class="btn btn-outline-primary btn-icon-text" th:href="@{/admin/brands/addOrEdit}">
+					<i class="mdi mdi-file-check btn-icon-prepend"></i> Thêm loại sản phẩm mới
+				</a>
+				
+				<a class="btn btn-outline-info btn-icon-text" th:href="@{/admin/brands}"><i
+						class="mdi mdi-printer btn-icon-append"></i> Danh sách loại sản
+					phẩm </a>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
